@@ -1,0 +1,6 @@
+requests==2.31.0
+pandas==2.0.3
+Flask-RESTful==0.3.8
+Flask-SQLAlchemy==2.4.3
+
+

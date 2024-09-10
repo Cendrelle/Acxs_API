@@ -1,0 +1,206 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "description": "<p> API </p> Données stimulées",
+        "version": "1.0.0",
+        "title": "API ACXS IT"
+    },
+    "servers": [
+        {
+            "url": "https://127.0.0.1.5000"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Markets",
+            "description": "Liste de tous les marchés"
+        },
+        {
+            "name": "Filter_markets",
+            "description": "Liste de tous les marchés filtrés"
+        },
+        {
+            "name": "Past_markets",
+            "description": "Liste de tous les marchés passés"
+        },
+        {
+            "name": "Upcoming_markets",
+            "description": "Liste de tous les marchés à venir"
+        }
+    ],
+    "paths": {
+        "/markets": {
+            "post": {
+                "tags": [
+                    "Markets"
+                ],
+                "summary": "Otenir la liste des marchés",
+                "operationId": "getMarkets",
+                "responses": {
+                    "200": {
+                        "description": "Renvoie une collection de marchés",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArrayOfMarkets"
+                                }
+                            }
+                        }
+                    }, 
+                    "500": {
+                        "description": "Renvoie un message d'erreur"
+                    }
+                }
+            }
+        },
+        "/filter_markets": {
+            "post": {
+                "tags": [
+                    "Filter_markets"
+                ],
+                "summary": "Otenir la liste des marchés filtrés",
+                "operationId": "getFilterMarkets",
+                "responses": {
+                    "200": {
+                        "description": "Renvoie une collection de marchés",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArrayOfFilterMarkets"
+                                }
+                            }
+                        }
+                    }, 
+                    "500": {
+                        "description": "Renvoie un message d'erreur"
+                    }
+                }
+            }
+        },
+        "/past_markets": {
+            "get": {
+                "tags": [
+                    "Past_markets"
+                ],
+                "summary": "Otenir la liste des marchés passés",
+                "operationId": "getPastMarkets",
+                "responses": {
+                    "200": {
+                        "description": "Renvoie les marchés passés",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArrayOfPastMarkets"
+                                }
+                            }
+                        }
+                    }, 
+                    "500": {
+                        "description": "Renvoie un message d'erreur"
+                    }
+                }
+            }
+        },
+        "/upcoming_markets": {
+            "get": {
+                "tags": [
+                    "Upcoming_markets"
+                ],
+                "summary": "Otenir la liste des marchés à venir",
+                "operationId": "getUpcomingMarkets",
+                "responses": {
+                    "200": {
+                        "description": "Renvoie les marchés à venir",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArrayOfFilterMarkets"
+                                }
+                            }
+                        }
+                    }, 
+                    "500": {
+                        "description": "Renvoie un message d'erreur"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Markets": {
+                "type": "object",
+                "properties": {
+                    "title": "string"
+                }
+            },
+            "ArrayOfMarkets": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Markets"
+                },
+                "example": {
+                    "data": [
+                        "Plan de passation n° ABMED_2024_1 - 02-09-2024 (4).xlsx",
+                        "Plan de passation n° ABMED_2024_1 - 02-09-2024 (4).xlsx"
+                    ],
+                    "message": "Files download.",
+                    "status": "success"
+                }
+            },
+            "Filter_arkets": {
+                "type": "object",
+                "properties": {
+                    "title": "string"
+                }
+            },
+            "ArrayOfFilterMarkets": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Filter_markets"
+                },
+                "example": {
+                    "data": [
+                        "Plan de passation n° ABMED_2024_1 - 02-09-2024 (4).xlsx"
+                    ],
+                    "message": "Files processed.",
+                    "status": "success"
+                }
+            },
+            "Past_markets": {
+                "type": "object",
+                "properties": {
+                    "title": "string"
+                }
+            },
+            "ArrayOfPastMarkets": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Past_arkets"
+                },
+                "example": {
+                    "data": [
+                        "Plan de passation n° ABMED_2024_1 - 02-09-2024 (4).xlsx"
+                    ]
+                }
+            },
+            "Upcoming_markets": {
+                "type": "object",
+                "properties": {
+                    "title": "string"
+                }
+            },
+            "ArrayOfUpcomingMarkets": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Upcoming_arkets"
+                },
+                "example": {
+                    "data": [
+                        "Plan de passation n° ABMED_2024_1 - 02-09-2024 (4).xlsx"
+                    ]
+                }
+            }
+        }
+    }
+}
